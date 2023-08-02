@@ -3,6 +3,8 @@ import Header from "./components/Header";
 import Products from "./components/Products";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
+import AllProducts from "./pages/AllProducts";
+import Categories from "./pages/Categories";
 
 const App = () => {
   return (
@@ -11,6 +13,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products/:id" element={<Product />} />
+        <Route path="/products" element={<AllProducts />} />
+        <Route path="/categories/:name" element={<Categories />} />
       </Routes>
       <Products />
     </>
