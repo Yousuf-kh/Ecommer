@@ -19,6 +19,30 @@ const Product = () => {
     getProduct();
   }, []);
 
+  const addCart = (product) => {
+    const localProduct = JSON.parse(localStorage.getItem("products")) || [];
+    const productExist = localProduct.find((c) => c.id === product.id);
+    if (productExist) {
+      const updateProduct = localProduct.map((c) => {
+        if (c.id === product.id) {
+          return {
+            ...c,
+            quantity: c.quantity + 1,
+          };
+        }
+        return c;
+      });
+      localStorage.setItem("products", JSON.stringify(updateProduct));
+    } else {
+      localStorage.setItem(
+        "products",
+        JSON.stringify([...localProduct, { ...product, quantity: 1 }])
+      );
+    }
+
+    alert("sucsses");
+  };
+
   return isLoading ? (
     "...Loading"
   ) : (
@@ -119,7 +143,10 @@ const Product = () => {
               <span className="title-font font-medium text-2xl text-gray-900">
                 ${product.price}
               </span>
-              <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+              <button
+                onClick={() => addCart(product)}
+                className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+              >
                 Add to Card
               </button>
               <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">

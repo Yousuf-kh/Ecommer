@@ -11,7 +11,7 @@ const Home = () => {
   useEffect(() => {
     const getProducts = async () => {
       setIsLoading(true);
-      const res = await axios.get("https://fakestoreapi.com/products?limit=12");
+      const res = await axios.get("https://fakestoreapi.com/products?limit=8");
       const data = res.data;
       setProducts(data);
       setIsLoading(false);
