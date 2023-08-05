@@ -17,7 +17,7 @@ const Product = () => {
       setIsLoading(false);
     };
     getProduct();
-  }, []);
+  }, [id]);
 
   const addCart = (product) => {
     const localProduct = JSON.parse(localStorage.getItem("products")) || [];
